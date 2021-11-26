@@ -71,6 +71,16 @@ public @interface TableField {
     String update() default "";
 
     /**
+     * 字段 subSelect select 部分注入
+     * <p>
+     * 例1：@TableField(.. , subSelect="st_astext(%s)") 其中 %s 会填充为字段
+     * 输出 SQL 为：select st_astext(字段) as 字段 ...
+     * </p>
+     * @return
+     */
+    String subSelect() default "";
+
+    /**
      * 字段验证策略之 insert: 当insert操作时，该字段拼接insert语句时的策略
      * <p>
      * IGNORED: 直接拼接 insert into table_a(column) values (#{columnProperty});

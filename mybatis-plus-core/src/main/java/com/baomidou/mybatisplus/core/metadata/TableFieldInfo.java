@@ -123,6 +123,11 @@ public class TableFieldInfo implements Constants {
      * 字段 update set 部分注入
      */
     private String update;
+
+    /**
+     * 字段 subSelect select 部分注入
+     */
+    private String subSelect;
     /**
      * where 字段比较条件
      */
@@ -204,6 +209,7 @@ public class TableFieldInfo implements Constants {
         this.withInsertFill = this.fieldFill == FieldFill.INSERT || this.fieldFill == FieldFill.INSERT_UPDATE;
         this.withUpdateFill = this.fieldFill == FieldFill.UPDATE || this.fieldFill == FieldFill.INSERT_UPDATE;
         this.update = tableField.update();
+        this.subSelect = tableField.subSelect();
         JdbcType jdbcType = tableField.jdbcType();
         final Class<? extends TypeHandler> typeHandler = tableField.typeHandler();
         final String numericScale = tableField.numericScale();
@@ -262,8 +268,13 @@ public class TableFieldInfo implements Constants {
             column = String.format(columnFormat, column);
         }
 
+
         this.column = column;
-        this.sqlSelect = column;
+        if (StringUtils.isNotBlank(subSelect)) {
+            this.sqlSelect = String.format(subSelect, column);
+        }else {
+            this.sqlSelect = column;
+        }
         if (needAs) {
             // 存在指定转换属性
             String propertyFormat = dbConfig.getPropertyFormat();
