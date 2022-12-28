@@ -97,3 +97,15 @@ Mybatis 增强工具包 - 只做增强不做改变，简化`CRUD`操作
 # 关注我 | About Me
 
 ![程序员日记](https://images.gitee.com/uploads/images/2019/0619/181933_46d5b802_12260.png "程序员日记")
+
+
+# 打包发布说明
+
+修改`build.gradle`中的username和password，改为github的用户名和token
+```
+# 打包
+gradle build -x test
+# 发布
+gradle publish -x test
+```
+如失败则多执行几次。说实在gradle真不好用，学习成本超高，gradle版本不一致还一堆不兼容，都是安卓和知乎神话了，搞到一堆人跟风。
