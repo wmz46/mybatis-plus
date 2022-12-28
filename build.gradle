@@ -2,7 +2,7 @@ import java.time.LocalDateTime
 
 allprojects {
     group = 'com.baomidou'
-    version = "3.4.3.4"
+    version = "3.4.3.4-SNAPSHOT"
 }
 
 ext {
@@ -87,6 +87,7 @@ subprojects {
         mavenLocal()
         maven { url "https://maven.aliyun.com/repository/public" }
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+
         jcenter()
     }
 
@@ -96,6 +97,7 @@ subprojects {
         testImplementation "org.mockito:mockito-junit-jupiter:3.12.4"
         testImplementation "${lib["lagarto"]}"
         testImplementation "${lib["logback-classic"]}"
+
     }
 
     tasks.withType(JavaCompile) {
